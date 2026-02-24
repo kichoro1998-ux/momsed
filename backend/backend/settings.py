@@ -93,15 +93,11 @@ if os.environ.get('DATABASE_URL'):
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'food_orderingdb',
-            'USER': 'momsed',
-            'PASSWORD': 'Mo06!*)(-#',
-            'HOST': 'localhost',
-            'PORT': '5432',
+        'default': dj_database_url.config(default=os.environ.get("DATABASE_URL")
+          )
+            
         }
-    }
+    
 
 
 
