@@ -1,0 +1,345 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.custom-navbar {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.4s ease;
+  padding: 20px;
+}
+
+.logo-icon {
+  color: #ff5722;
+  font-size: 1.6rem;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.custom-link {
+  position: relative;
+  color: #fff !important;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.custom-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #ff5722;
+  transition: width 0.3s ease;
+}
+
+.custom-link:hover {
+  transform: translateY(-6px);
+  color: #ff5722 !important;
+}
+
+.custom-link:hover::after,
+.custom-link.active::after {
+  width: 100%;
+}
+
+.custom-link.active {
+  color: #ff5722 !important;
+}
+
+.custom-link.active {
+  color: #e53935 !important;
+}
+
+/* NAV UNDERLINE EFFECT */
+/* .underline-hover {
+    position: relative;
+}
+
+.underline-hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: #e53935;
+    transition: width 0.3s;
+}
+
+.underline-hover:hover::after {
+    width: 100%;
+}
+ */
+
+
+
+
+/* HERO SECTION */
+.hero {
+    /* min-height: calc(100vh - 80px); */
+    margin-top: 25px;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/foodpic.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 100px;
+    color: white;
+    /* so text is visible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* Fade-up animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s forwards;
+}
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.main-content{
+    margin: 0;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+img {
+  transition: transform 0.8s ease, box-shadow 0.4s ease;
+}
+
+img:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card,
+.p-4.bg-white {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover,
+.p-4.bg-white:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.p-4.bg-white i {
+  transition: transform 0.2s ease;
+}
+
+.p-4.bg-white:hover i {
+  transform: scale(1.2);
+}
+
+/* Menu style */
+
+/* MENU HERO */
+.menu-hero {
+  min-height: 50vh;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("/foodpic.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* MENU CARD */
+.menu-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  height: 100%;
+}
+
+.menu-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* IMAGE */
+.menu-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.menu-card:hover img {
+  transform: scale(1.0);
+}
+
+/* BODY */
+.menu-body {
+  padding: 16px;
+}
+
+.menu-body h5 {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.menu-body p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* FOOTER */
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff5722;
+}
+
+/* HOT BADGE */
+.badge-hot {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ff5722;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Footer style*/
+.footer-section {
+  background: linear-gradient(135deg, #111, #1c1c1c);
+  padding: 60px 0 20px;
+}
+
+.footer-text {
+  color: #bbb;
+  line-height: 1.7;
+}
+
+/* LINKS */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ff5722;
+  transform: translateX(6px);
+}
+
+/* CONTACT ICONS */
+.footer-section p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #bbb;
+}
+
+/* SOCIAL */
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 10px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.footer-social a:hover {
+  background: #ff5722;
+  transform: translateY(-6px);
+}
+
+/* BOTTOM */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+}
+
+/* FOOTER FORM */
+.footer-form .form-control {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.footer-form .form-control::placeholder {
+  color: #ccc;
+}
+
+.footer-form .form-control:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ff5722;
+  box-shadow: none;
+  color: #fff;
+}
+
+.footer-form button {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.footer-form button:hover {
+  transform: translateY(-3px);
+}
+.nav-links{
+  /* background-color: #666; */
+  padding: 10px;
+  transition: 0.2s ease-in-out;
+}
+.nav-links:hover{
+  background-color: rgb(99, 98, 98);
+  border-radius: 5px;
+  padding: 20px;
+}
