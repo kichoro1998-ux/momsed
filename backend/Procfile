@@ -1,2 +1,2 @@
-web: PYTHONPATH=/opt/render/project/src gunicorn backend.backend.wsgi:application --bind 0.0.0.0:$PORT
+web: gunicorn --chdir /opt/render/project/src backend.backend.wsgi:application --bind 0.0.0.0:$PORT
 
