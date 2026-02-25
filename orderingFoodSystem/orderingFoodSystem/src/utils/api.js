@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-// Backend server URL configuration
-// During development, Vite proxy will forward /api/* requests to the backend
-// In production, set VITE_BACKEND_URL environment variable
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
-const API_URL = BACKEND_URL ? `${BACKEND_URL.replace(/\/$/, '')}/api` : '/api';
+// Backend server URL configuration - Hardcoded for production
+const API_URL = "https://momsed-6.onrender.com/api";
+const MEDIA_URL = "https://momsed-6.onrender.com";
 
-console.log('API Configuration:', { API_URL, BACKEND_URL });
+console.log('API Configuration:', { API_URL, MEDIA_URL });
 
 /**
- * Constructs a full image URL from a relative path or returns full URL as-is
- * @param {string} imagePath - The image path from the backend (e.g., '/media/foods/image.jpg' or full URL)
+ * Gets the full URL for images
+ * Uses hardcoded backend URL for production
+ * @param {string} imagePath - The image path from the backend
  * @returns {string} Full URL to the image
  */
 export const getImageUrl = (imagePath) => {
@@ -23,37 +22,34 @@ export const getImageUrl = (imagePath) => {
         return imagePath;
     }
     
-    // If path starts with /media/, return as relative path for proxy
-    // The Vite proxy will forward /media/* to the backend
+    // Prepend the media URL for production
     if (imagePath.startsWith('/media/')) {
-        return imagePath;
+        return `${MEDIA_URL}${imagePath}`;
     }
     
-    // If path starts with /, return as relative path
+    // If path starts with /, prepend media URL
     if (imagePath.startsWith('/')) {
-        return imagePath;
+        return `${MEDIA_URL}${imagePath}`;
     }
     
-    // Otherwise, prepend /media/
-    return `/media/${imagePath}`;
+    // Otherwise, prepend /media/ and media URL
+    return `${MEDIA_URL}/media/${imagePath}`;
 };
 
 /**
- * Fallback image URL for food items - uses Vite proxy to avoid CORS issues
- * This ensures images work by using same-origin requests through Vite dev server proxy
- * @param {string} imagePath - The image path from the backend (can be full URL or relative path)
- * @returns {string} URL for the image (uses proxy path for same-origin loading)
+ * Gets the full URL for food item images
+ * Uses hardcoded backend URL for production
+ * @param {string} imagePath - The image path from the backend
+ * @returns {string} Full URL to the image
  */
 export const getFoodImageUrl = (imagePath) => {
     if (!imagePath) {
         return '/foodpic.jpg';
     }
     
-    // If already a full URL, extract just the path portion
+    // If already a full URL, return as-is
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-        // Extract path from full URL
-        const url = new URL(imagePath);
-        imagePath = url.pathname;
+        return imagePath;
     }
     
     // Ensure path starts with /
@@ -61,12 +57,12 @@ export const getFoodImageUrl = (imagePath) => {
         imagePath = '/' + imagePath;
     }
     
-    // Ensure path starts with /media/ for Vite proxy
+    // Ensure path starts with /media/ and prepend media URL
     if (!imagePath.startsWith('/media/')) {
         imagePath = '/media/' + imagePath.replace(/^\//, '');
     }
     
-    return imagePath;
+    return `${MEDIA_URL}${imagePath}`;
 };
 
 // Create axios instance
