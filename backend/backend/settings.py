@@ -177,6 +177,8 @@ if csrf_origins:
     CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in csrf_origins.split(',')]
 else:
     CSRF_TRUSTED_ORIGINS = [
+        "https://momsedd.vercel.app",
+        "https://www.momsedd.vercel.app",
         'http://localhost:5173',
         'http://127.0.0.1:5173',
         'http://localhost:5174',
