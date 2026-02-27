@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-77nmdy1juih5_q
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # Get ALLOWED_HOSTS from environment, comma-separated
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else ['localhost', '127.0.0.1', 'localhost:5173', '127.0.0.1:5173', 'localhost:5174', '127.0.0.1:5174', 'localhost:5175', '127.0.0.1:5175', 'localhost:5176', '127.0.0.1:5176', 'testserver', 'momsed-6.onrender.com', 'momsed-hac.vercel.app']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else ['localhost', '127.0.0.1', 'localhost:5173', '127.0.0.1:5173', 'localhost:5174', '127.0.0.1:5174', 'localhost:5175', '127.0.0.1:5175', 'localhost:5176', '127.0.0.1:5176', 'testserver', 'momsed9.onrender.com', 'momsed-mz.vercel.app', 'momsed-hac.vercel.app', 'momsedd.vercel.app']
 
 
 # Application definition
@@ -156,7 +156,10 @@ if cors_origins:
     CORS_ALLOWED_ORIGINS = [origin.strip() for origin in cors_origins.split(',')]
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://momsedd.vercel.app", "https://momsed-hac.vercel.app",
+        "https://momsedd.vercel.app", 
+        "https://momsed-hac.vercel.app", 
+        "https://momsed-mz.vercel.app",
+        "https://*.vercel.app",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:5174",
@@ -178,8 +181,12 @@ if csrf_origins:
     CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in csrf_origins.split(',')]
 else:
     CSRF_TRUSTED_ORIGINS = [
-        "https://momsedd.vercel.app", "https://momsed-hac.vercel.app",
-        "https://www.momsedd.vercel.app", "https://momsed-hac.vercel.app",
+        "https://momsedd.vercel.app", 
+        "https://momsed-hac.vercel.app",
+        "https://momsed-mz.vercel.app",
+        "https://*.vercel.app",
+        "https://www.momsedd.vercel.app", 
+        "https://www.momsed-hac.vercel.app",
         'http://localhost:5173',
         'http://127.0.0.1:5173',
         'http://localhost:5174',

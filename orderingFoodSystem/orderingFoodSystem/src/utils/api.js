@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // Backend server URL configuration - Hardcoded for production
-const API_URL = "https://momsed-6.onrender.com/api";
-const MEDIA_URL = "https://momsed-6.onrender.com";
+const API_URL = "https://momsed9.onrender.com/api";
+const MEDIA_URL = "https://momsed9.onrender.com";
 
 console.log('API Configuration:', { API_URL, MEDIA_URL });
 
