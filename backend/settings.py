@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-77nmdy1juih5_q
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # Get ALLOWED_HOSTS from environment, comma-separated
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else ['localhost', '127.0.0.1', 'localhost:5173', '127.0.0.1:5173', 'localhost:5174', '127.0.0.1:5174', 'localhost:5175', '127.0.0.1:5175', 'localhost:5176', '127.0.0.1:5176', 'testserver']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else ['localhost', '127.0.0.1', 'localhost:5173', '127.0.0.1:5173', 'localhost:5174', '127.0.0.1:5174', 'localhost:5175', '127.0.0.1:5175', 'localhost:5176', '127.0.0.1:5176', 'testserver', 'momsed9.onrender.com', 'momsed-mz.vercel.app', 'momsed-hac.vercel.app', 'momsedd.vercel.app']
 
 
 # Application definition
@@ -91,13 +91,7 @@ if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-else:
-    DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get("DATABASE_URL")
-          )
-            
-        }
-    
+
 
 
 
@@ -147,7 +141,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:5174', 'http://127.0.0.1:5174', 'http://localhost:5175', 'http://127.0.0.1:5175', 'http://localhost:5176', 'http://127.0.0.1:5176', 'http://localhost:5177', 'http://127.0.0.1:5177']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:5174', 'http://127.0.0.1:5174', 'http://localhost:5175', 'http://127.0.0.1:5175', 'http://localhost:5176', 'http://127.0.0.1:5176', 'http://localhost:5177', 'http://127.0.0.1:5177', 'https://momsedd.vercel.app', 'https://momsed-hac.vercel.app']
 
 # Get CORS origins from environment or use defaults
 cors_origins = os.environ.get('CORS_ALLOWED_ORIGINS', '')
@@ -155,16 +149,12 @@ if cors_origins:
     CORS_ALLOWED_ORIGINS = [origin.strip() for origin in cors_origins.split(',')]
 else:
     CORS_ALLOWED_ORIGINS = [
+        
+        "https://momsed-hac.vercel.app", 
+        "https://momsed-mz.vercel.app",
         "http://localhost:5173",
-        "http://127.0.0.1:5173",
         "http://localhost:5174",
-        "http://127.0.0.1:5174",
-        "http://localhost:5175",
-        "http://127.0.0.1:5175",
-        "http://localhost:5176",
-        "http://127.0.0.1:5176",
-        "http://localhost:5177",
-        "http://127.0.0.1:5177",
+      
     ]
 
 # Allow credentials for CORS
@@ -176,16 +166,12 @@ if csrf_origins:
     CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in csrf_origins.split(',')]
 else:
     CSRF_TRUSTED_ORIGINS = [
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-        'http://localhost:5174',
-        'http://127.0.0.1:5174',
-        'http://localhost:5175',
-        'http://127.0.0.1:5175',
-        'http://localhost:5176',
-        'http://127.0.0.1:5176',
-        'http://localhost:5177',
-        'http://127.0.0.1:5177',
+        
+        "https://momsed-hac.vercel.app",
+        "https://momsed-mz.vercel.app",
+        "http://localhost:5173",
+        
+        
     ]
 
 REST_FRAMEWORK = {
@@ -211,3 +197,4 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
+
