@@ -91,14 +91,7 @@ if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-    
+
 
 
 
@@ -156,20 +149,12 @@ if cors_origins:
     CORS_ALLOWED_ORIGINS = [origin.strip() for origin in cors_origins.split(',')]
 else:
     CORS_ALLOWED_ORIGINS = [
-        "https://momsedd.vercel.app", 
+        
         "https://momsed-hac.vercel.app", 
         "https://momsed-mz.vercel.app",
-        "https://*.vercel.app",
         "http://localhost:5173",
-        "http://127.0.0.1:5173",
         "http://localhost:5174",
-        "http://127.0.0.1:5174",
-        "http://localhost:5175",
-        "http://127.0.0.1:5175",
-        "http://localhost:5176",
-        "http://127.0.0.1:5176",
-        "http://localhost:5177",
-        "http://127.0.0.1:5177",
+      
     ]
 
 # Allow credentials for CORS
@@ -181,22 +166,12 @@ if csrf_origins:
     CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in csrf_origins.split(',')]
 else:
     CSRF_TRUSTED_ORIGINS = [
-        "https://momsedd.vercel.app", 
+        
         "https://momsed-hac.vercel.app",
         "https://momsed-mz.vercel.app",
-        "https://*.vercel.app",
-        "https://www.momsedd.vercel.app", 
-        "https://www.momsed-hac.vercel.app",
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-        'http://localhost:5174',
-        'http://127.0.0.1:5174',
-        'http://localhost:5175',
-        'http://127.0.0.1:5175',
-        'http://localhost:5176',
-        'http://127.0.0.1:5176',
-        'http://localhost:5177',
-        'http://127.0.0.1:5177',
+        "http://localhost:5173",
+        
+        
     ]
 
 REST_FRAMEWORK = {
@@ -223,13 +198,3 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
-from django.contrib.auth import get_user_model
-
-if os.environ.get("CREATE_SUPERUSER") == "1":
-    User = get_user_model()
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser(
-            username="admin",
-            email="starmomsed@gmail.com",
-            password="admin1234"
-        )
