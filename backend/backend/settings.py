@@ -112,11 +112,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Use PostgreSQL for local development, PostgreSQL on Render
 # If DATABASE_URL is provided (by Render), use it; otherwise use local config
 if os.environ.get('DATABASE_URL'):
+    database_url = os.environ.get('DATABASE_URL')
+    db_is_sqlite = database_url.startswith('sqlite')
     DATABASES = {
         'default': dj_database_url.parse(
-            os.environ.get('DATABASE_URL'),
+            database_url,
             conn_max_age=600,
-            ssl_require=True,
+            ssl_require=not db_is_sqlite,
         )
     }
 else:

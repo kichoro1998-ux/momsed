@@ -1,7 +1,17 @@
 import axios from 'axios';
 
-const apiBaseUrl = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/+$/, "");
-const mediaBaseUrl = (import.meta.env.VITE_MEDIA_URL || apiBaseUrl).replace(/\/+$/, "");
+const normalizeBaseUrl = (url, { stripApi = false } = {}) => {
+    const trimmed = (url || "").trim().replace(/\.+$/, "").replace(/\/+$/, "");
+    if (!trimmed) return "";
+    if (stripApi && /\/api$/i.test(trimmed)) {
+        return trimmed.replace(/\/api$/i, "");
+    }
+    return trimmed;
+};
+
+const rawApiUrl = import.meta.env.VITE_API_URL || "https://momsed-1-vkv7.onrender.com";
+const apiBaseUrl = normalizeBaseUrl(rawApiUrl, { stripApi: true });
+const mediaBaseUrl = normalizeBaseUrl(import.meta.env.VITE_MEDIA_URL || apiBaseUrl);
 const API_URL = `${apiBaseUrl}/api`;
 const MEDIA_URL = mediaBaseUrl;
 

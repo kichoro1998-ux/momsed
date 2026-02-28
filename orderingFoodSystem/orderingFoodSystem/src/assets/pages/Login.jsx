@@ -52,10 +52,9 @@ export default function Login() {
                 return;
             }
 
-            // Email validation
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-            if (!emailRegex.test(email)) {
-                setError("Please enter a valid Gmail address (example@gmail.com)");
+            // Basic email validation
+            if (!email.includes('@')) {
+                setError("Please enter a valid email address");
                 return;
             }
 
@@ -86,7 +85,12 @@ export default function Login() {
                 console.error(" Login failed:", err);
                 console.error("Error response:", err.response?.data);
                 console.error("Status:", err.response?.status);
-                
+
+                if (!err.response) {
+                    setError("Cannot reach server. Check VITE_API_URL, backend deployment, and CORS settings.");
+                    return;
+                }
+
                 setError(
                     err.response?.data?.error ||
                     err.response?.data?.detail ||
@@ -110,10 +114,9 @@ export default function Login() {
                 return;
             }
 
-            // Email validation
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-            if (!emailRegex.test(email)) {
-                setError("Email must be a valid Gmail address (example@gmail.com)");
+            // Basic email validation
+            if (!email.includes('@')) {
+                setError("Please enter a valid email address");
                 return;
             }
 
@@ -145,6 +148,10 @@ export default function Login() {
                 console.error("Registration failed:", err);
                 console.error("Response data:", err.response?.data);
                 console.error("Response status:", err.response?.status);
+                if (!err.response) {
+                    setError("Cannot reach server. Check VITE_API_URL, backend deployment, and CORS settings.");
+                    return;
+                }
                 const errorMsg = err.response?.data?.username?.[0] ||
                                err.response?.data?.email?.[0] ||
                                err.response?.data?.password?.[0] ||

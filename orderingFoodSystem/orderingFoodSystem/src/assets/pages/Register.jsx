@@ -53,10 +53,9 @@ export default function Register() {
       return;
     }
 
-    // Email must be Gmail
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    if (!emailRegex.test(email)) {
-      setError("Email must be a valid Gmail address (example@gmail.com)");
+    // Basic email validation
+    if (!email.includes('@')) {
+      setError("Please enter a valid email address");
       return;
     }
 
@@ -89,6 +88,10 @@ export default function Register() {
       navigate('/login');
     } catch (err) {
       console.error("Registration failed:", err);
+      if (!err.response) {
+        setError("Cannot reach server. Check VITE_API_URL, backend deployment, and CORS settings.");
+        return;
+      }
       const errorMsg = err.response?.data?.username?.[0] || 
                        err.response?.data?.email?.[0] || 
                        err.response?.data?.password?.[0] ||
