@@ -49,7 +49,7 @@ urlpatterns = [
 ]
 
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+# Serve uploaded media files.
+# On Render (DEBUG=False), this allows image URLs from ImageField to resolve.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
