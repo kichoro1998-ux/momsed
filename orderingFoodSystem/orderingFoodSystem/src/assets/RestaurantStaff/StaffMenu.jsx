@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaEdit, FaTrash, FaPlus, FaCamera, FaCheck } from "react-icons/fa";
-import { foodAPI } from "../../utils/api";
+import { foodAPI, getFoodImageUrl } from "../../utils/api";
 
 export default function StaffMenu() {
     const [menuItems, setMenuItems] = useState([]);
@@ -322,9 +322,10 @@ export default function StaffMenu() {
                                         <td>
                                             {item.image ? (
                                                 <img 
-                                                    src={item.image} 
+                                                    src={getFoodImageUrl(item.image)}
                                                     alt={item.name}
                                                     style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }}
+                                                    onError={(e) => { e.currentTarget.src = '/foodpic.jpg'; }}
                                                 />
                                             ) : (
                                                 <div style={{ width: '50px', height: '50px', backgroundColor: '#f0f0f0', borderRadius: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
