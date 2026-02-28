@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -49,7 +50,10 @@ urlpatterns = [
 ]
 
 
-# Serve uploaded media files.
-# On Render (DEBUG=False), this allows image URLs from ImageField to resolve.
+# Serve uploaded media files in both development and production.
+# Render does not provide persistent disk, but this ensures files uploaded
+# during runtime can be read back immediately by clients.
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+urlpatterns += [
+    re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
+]
