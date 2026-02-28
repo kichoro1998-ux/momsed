@@ -85,11 +85,22 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Use SQLite for local development, PostgreSQL on Render
+# Use PostgreSQL for local development, PostgreSQL on Render
 # If DATABASE_URL is provided (by Render), use it; otherwise use local config
 if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'food_orderingdb',
+            'USER': 'momsed',
+            'PASSWORD': 'Mo06!*)(-#',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
 
 
