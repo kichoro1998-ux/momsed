@@ -12,8 +12,8 @@ Required environment variables:
 - `DEBUG=False`
 - `ALLOWED_HOSTS=<your-backend>.onrender.com`
 - `DATABASE_URL=<render-postgres-url>`
-- `CORS_ALLOWED_ORIGINS=https://<your-frontend-domain>`
-- `CSRF_TRUSTED_ORIGINS=https://<your-frontend-domain>,https://<your-backend>.onrender.com`
+- `CORS_ALLOWED_ORIGINS=https://momsed-mz.vercel.app`
+- `CSRF_TRUSTED_ORIGINS=https://momsed-mz.vercel.app,https://<your-backend>.onrender.com`
 
 Optional: create Django admin superuser on deploy:
 
