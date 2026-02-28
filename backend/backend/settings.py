@@ -26,7 +26,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-77nmdy1juih5_q1*6&a&n*vo4emu#y-!ajhs#a998p8awn(^0k')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+def env_bool(name, default=False):
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in ("1", "true", "yes", "on")
+
+
+DEBUG = env_bool("DEBUG", False)
+if os.environ.get("RENDER"):
+    DEBUG = False
 
 def env_list(name, default=None):
     value = os.environ.get(name, "")
@@ -39,6 +48,7 @@ DEFAULT_ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "testserver",
+    "momsed-1-vkv7.onrender.com",
 ]
 ALLOWED_HOSTS = env_list("ALLOWED_HOSTS", DEFAULT_ALLOWED_HOSTS)
 render_hostname = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
@@ -181,6 +191,7 @@ DEFAULT_CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:5174",
     "https://momsed-mz.vercel.app",
+    "https://momsed-1-vkv7.onrender.com",
 ]
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS", DEFAULT_CSRF_TRUSTED_ORIGINS)
 

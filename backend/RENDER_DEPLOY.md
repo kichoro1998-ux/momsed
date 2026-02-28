@@ -10,10 +10,10 @@ Required environment variables:
 
 - `DJANGO_SECRET_KEY=<strong-secret>`
 - `DEBUG=False`
-- `ALLOWED_HOSTS=<your-backend>.onrender.com`
+- `ALLOWED_HOSTS=momsed-1-vkv7.onrender.com`
 - `DATABASE_URL=<render-postgres-url>`
 - `CORS_ALLOWED_ORIGINS=https://momsed-mz.vercel.app`
-- `CSRF_TRUSTED_ORIGINS=https://momsed-mz.vercel.app,https://<your-backend>.onrender.com`
+- `CSRF_TRUSTED_ORIGINS=https://momsed-mz.vercel.app,https://momsed-1-vkv7.onrender.com`
 
 Optional: create Django admin superuser on deploy:
 
@@ -30,6 +30,12 @@ Optional: create/update restaurant staff user on deploy:
 - `STAFF_PASSWORD=<strong-password>`
 - `STAFF_FIRST_NAME=Restaurant`
 - `STAFF_LAST_NAME=Admin`
+
+Current project defaults if you don't set `STAFF_*` env vars:
+
+- `STAFF_USERNAME=staff1`
+- `STAFF_EMAIL=staff1@gmail.com`
+- `STAFF_PASSWORD=momsed123!`
 
 After first successful deploy, set:
 

@@ -22,9 +22,12 @@ def create_or_update_staff():
     from django.contrib.auth.models import User
     from foodapp.models import Profile
 
-    username = require_env("STAFF_USERNAME")
-    email = require_env("STAFF_EMAIL").lower()
-    password = require_env("STAFF_PASSWORD")
+    # Fallback defaults for first deployment. Env vars still override these.
+    username = os.environ.get("STAFF_USERNAME", "staff1").strip()
+    email = os.environ.get("STAFF_EMAIL", "staff1@gmail.com").strip().lower()
+    password = os.environ.get("STAFF_PASSWORD", "momsed123!").strip()
+    if not username or not email or not password:
+        raise ValueError("STAFF_USERNAME, STAFF_EMAIL and STAFF_PASSWORD must not be empty.")
     first_name = os.environ.get("STAFF_FIRST_NAME", "").strip()
     last_name = os.environ.get("STAFF_LAST_NAME", "").strip()
     phone = os.environ.get("STAFF_PHONE", "").strip()
