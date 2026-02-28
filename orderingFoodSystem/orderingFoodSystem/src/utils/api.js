@@ -1,16 +1,14 @@
 import axios from 'axios';
 
-// Backend server URL configuration - Hardcoded for production
-const API_URL = "http://localhost:8000/api";
-const MEDIA_URL = "http://localhost:8000";
+const apiBaseUrl = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/+$/, "");
+const mediaBaseUrl = (import.meta.env.VITE_MEDIA_URL || apiBaseUrl).replace(/\/+$/, "");
+const API_URL = `${apiBaseUrl}/api`;
+const MEDIA_URL = mediaBaseUrl;
 
 console.log('API Configuration:', { API_URL, MEDIA_URL });
 
 /**
- * Gets the full URL for images
- * Uses hardcoded backend URL for production
- * @param {string} imagePath - The image path from the backend
- * @returns {string} Full URL to the image
+ * Gets the full URL for images.
  */
 export const getImageUrl = (imagePath) => {
     if (!imagePath) {
@@ -37,10 +35,7 @@ export const getImageUrl = (imagePath) => {
 };
 
 /**
- * Gets the full URL for food item images
- * Uses hardcoded backend URL for production
- * @param {string} imagePath - The image path from the backend
- * @returns {string} Full URL to the image
+ * Gets the full URL for food item images.
  */
 export const getFoodImageUrl = (imagePath) => {
     if (!imagePath) {
@@ -71,7 +66,7 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    withCredentials: true,
+    withCredentials: false,
     xsrfCookieName: 'csrftoken',
     xsrfHeaderName: 'X-CSRFToken',
 });
@@ -178,7 +173,7 @@ export const foodAPI = {
             headers: {
                 // Don't set Content-Type - let browser set it with boundary for multipart/form-data
             },
-            withCredentials: true,
+            withCredentials: false,
             xsrfCookieName: 'csrftoken',
             xsrfHeaderName: 'X-CSRFToken',
         });

@@ -42,87 +42,32 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        email = request.data.get('email')
+        email = (request.data.get('email') or '').strip().lower()
         password = request.data.get('password')
+        if not email or not password:
+            return Response({'error': 'Email and password are required'}, status=400)
 
-        print(f"Login attempt for email: {email}")
-        print(f"Request data: {request.data}")
-        
+        user = User.objects.filter(email__iexact=email).first()
+        if not user or not user.check_password(password):
+            return Response({'error': 'Invalid credentials'}, status=401)
+
         try:
-            # Find ALL users with this email
-            users = User.objects.filter(email=email)
-            
-            if not users.exists():
-                print(f" No user found with email: {email}")
-                return Response({'error': 'Invalid credentials'}, status=401)
-            
-            if users.count() > 1:
-                print(f" Multiple users found with email {email}:")
-                for u in users:
-                    print(f"   - ID: {u.id}, Username: {u.username}")
-                # Try each user until we find one with matching password
-                for user in users:
-                    if user.check_password(password):
-                        print(f"Found matching user: {user.username}")
-                        # Get user role from profile
-                        try:
-                            profile = user.profile
-                            role = profile.role
-                        except Profile.DoesNotExist:
-                            role = 'customer'
-                        
-                        refresh = RefreshToken.for_user(user)
-                        response_data = {
-                            'access': str(refresh.access_token),
-                            'refresh': str(refresh),
-                            'user': {
-                                'id': user.id,
-                                'username': user.username,
-                                'email': user.email,
-                                'role': role,
-                            }
-                        }
-                        print(f"Login successful for user: {user.username}, role: {role}")
-                        return Response(response_data)
-                print(f"No user with email {email} has matching password")
-                return Response({'error': 'Invalid credentials'}, status=401)
-            
-            # Only one user with this email
-            user = users.first()
-            
-            if user.check_password(password):
-                print(f"Password valid for user: {user.username}")
-                # Get user role from profile
-                try:
-                    profile = user.profile
-                    role = profile.role
-                except Profile.DoesNotExist:
-                    role = 'customer'
-                    print(f" No profile found for user {user.username}, defaulting to customer")
-                
-                refresh = RefreshToken.for_user(user)
-                response_data = {
-                    'access': str(refresh.access_token),
-                    'refresh': str(refresh),
-                    'user': {
-                        'id': user.id,
-                        'username': user.username,
-                        'email': user.email,
-                        'role': role,
-                    }
-                }
-                print(f"Login successful for user: {user.username}, role: {role}")
-                return Response(response_data)
-            else:
-                print(f"Invalid password for user: {user.username}")
-                return Response({'error': 'Invalid credentials'}, status=401)
-                
-        except User.DoesNotExist:
-            print(f" User does not exist: {email}")
-            return Response({'error': 'User not found'}, status=401)
-        except Exception as e:
-            print(f" Login error: {str(e)}")
-            return Response({'error': str(e)}, status=500)
+            role = user.profile.role
+        except Profile.DoesNotExist:
+            role = 'customer'
+
+        refresh = RefreshToken.for_user(user)
+        response_data = {
+            'access': str(refresh.access_token),
+            'refresh': str(refresh),
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'role': role,
+            }
+        }
+        return Response(response_data)
 
 
 # ============================
