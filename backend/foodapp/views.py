@@ -42,14 +42,35 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        email = (request.data.get('email') or '').strip().lower()
+        identifier = (request.data.get('email') or request.data.get('username') or '').strip().lower()
         password = request.data.get('password')
-        if not email or not password:
-            return Response({'error': 'Email and password are required'}, status=400)
+        if not identifier or not password:
+            return Response({'error': 'Email/username and password are required'}, status=400)
 
-        user = User.objects.filter(email__iexact=email).first()
-        if not user or not user.check_password(password):
+        # Allow login by either email or username.
+        users = User.objects.filter(email__iexact=identifier).order_by('id')
+        if not users.exists():
+            users = User.objects.filter(username__iexact=identifier).order_by('id')
+        if not users.exists():
             return Response({'error': 'Invalid credentials'}, status=401)
+
+        matched_users = []
+        for candidate in users:
+            if candidate.check_password(password):
+                matched_users.append(candidate)
+
+        if not matched_users:
+            return Response({'error': 'Invalid credentials'}, status=401)
+
+        # If multiple accounts match, prioritize restaurant staff role.
+        user = matched_users[0]
+        for candidate in matched_users:
+            try:
+                if candidate.profile.role == 'restaurant':
+                    user = candidate
+                    break
+            except Profile.DoesNotExist:
+                continue
 
         try:
             role = user.profile.role

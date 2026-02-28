@@ -33,10 +33,16 @@ def create_or_update_staff():
     phone = os.environ.get("STAFF_PHONE", "").strip()
     address = os.environ.get("STAFF_ADDRESS", "").strip()
 
-    user, created = User.objects.get_or_create(
-        username=username,
-        defaults={"email": email},
-    )
+    user = User.objects.filter(username=username).first()
+    created = False
+    if user is None:
+        user = User.objects.filter(email__iexact=email).first()
+    if user is None:
+        user = User.objects.create(username=username, email=email)
+        created = True
+
+    if user.username != username:
+        user.username = username
     if user.email.lower() != email:
         user.email = email
     user.set_password(password)
