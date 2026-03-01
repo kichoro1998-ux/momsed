@@ -1,0 +1,89 @@
+@startuml
+skinparam handwritten true
+hide circle
+
+entity "auth_user" as user {
+  * id : bigint <<PK>>
+  --
+  username : varchar
+  email : varchar
+  password : varchar
+}
+
+entity "profile" as profile {
+  * id : bigint <<PK>>
+  --
+  user_id : bigint <<FK>>
+  role : varchar
+  first_name : varchar
+  last_name : varchar
+  phone : varchar
+  address : text
+}
+
+entity "food" as food {
+  * id : bigint <<PK>>
+  --
+  name : varchar
+  description : text
+  price : decimal
+  stock : int
+  category : varchar
+  image : varchar
+  available : bool
+  restaurant_id : bigint <<FK>>
+}
+
+entity "order" as ord {
+  * id : bigint <<PK>>
+  --
+  customer_id : bigint <<FK>>
+  status : varchar
+  total_price : decimal
+  delivery_address : text
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "order_item" as item {
+  * id : bigint <<PK>>
+  --
+  order_id : bigint <<FK>>
+  food_id : bigint <<FK>>
+  quantity : int
+  price : decimal
+}
+
+entity "inventory" as inventory {
+  * id : bigint <<PK>>
+  --
+  name : varchar
+  quantity : decimal
+  unit : varchar
+  supplier : varchar
+  restaurant_id : bigint <<FK>>
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "notification" as notification {
+  * id : bigint <<PK>>
+  --
+  user_id : bigint <<FK>>
+  order_id : bigint <<FK, nullable>>
+  type : varchar
+  message : text
+  is_read : bool
+  created_at : datetime
+}
+
+user ||--|| profile
+user ||--o{ food
+user ||--o{ ord
+ord ||--|{ item
+food ||--o{ item
+user ||--o{ inventory
+user ||--o{ notification
+ord |o--o{ notification
+
+@enduml

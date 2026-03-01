@@ -1,0 +1,75 @@
+@startuml
+skinparam handwritten true
+skinparam classAttributeIconSize 0
+
+class User {
+  +id: int
+  +username: string
+  +email: string
+  +password: string
+}
+
+class Profile {
+  +id: int
+  +role: enum(customer, restaurant)
+  +first_name: string
+  +last_name: string
+  +phone: string
+  +address: text
+  +full_name(): string
+}
+
+class Food {
+  +id: int
+  +name: string
+  +description: text
+  +price: decimal
+  +stock: int
+  +category: enum
+  +image: image
+  +available: bool
+}
+
+class Order {
+  +id: int
+  +status: enum
+  +total_price: decimal
+  +delivery_address: text
+  +created_at: datetime
+  +updated_at: datetime
+}
+
+class OrderItem {
+  +id: int
+  +quantity: int
+  +price: decimal
+}
+
+class Inventory {
+  +id: int
+  +name: string
+  +quantity: decimal
+  +unit: enum
+  +supplier: string
+  +created_at: datetime
+  +updated_at: datetime
+}
+
+class Notification {
+  +id: int
+  +type: enum
+  +message: text
+  +is_read: bool
+  +created_at: datetime
+}
+
+User "1" -- "1" Profile
+User "1" -- "0..*" Food : restaurant owns >
+User "1" -- "0..*" Order : customer places >
+Order "1" -- "1..*" OrderItem
+Food "1" -- "0..*" OrderItem
+User "1" -- "0..*" Inventory : restaurant owns >
+User "1" -- "0..*" Notification
+Order "0..1" -- "0..*" Notification
+
+@enduml

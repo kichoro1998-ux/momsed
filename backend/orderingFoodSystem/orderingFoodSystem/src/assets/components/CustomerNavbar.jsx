@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUtensils, FaHome, FaShoppingCart, FaHistory, FaUser, FaBars, FaSignOutAlt } from "react-icons/fa";
 import Notifications from "../../components/Notifications";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function CustomerNavbar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       logout();
-      window.location.href = '/login';
+      navigate('/login');
     }
   };
 

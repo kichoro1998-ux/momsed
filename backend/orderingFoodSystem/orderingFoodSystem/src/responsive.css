@@ -303,6 +303,21 @@
   .input-group-text {
     display: none;
   }
+
+  /* Keep profile fields readable on phones */
+  .profile-form .input-group {
+    flex-direction: row;
+  }
+
+  .profile-form .input-group .form-control,
+  .profile-form .input-group textarea {
+    margin-bottom: 0;
+  }
+
+  .profile-form .input-group-text {
+    display: flex !important;
+    align-items: center;
+  }
 }
 
 @media (min-width: 576px) {
@@ -812,4 +827,3 @@
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
   }
 }
-

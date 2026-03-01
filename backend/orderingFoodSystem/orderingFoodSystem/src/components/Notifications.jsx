@@ -12,6 +12,15 @@ export default function Notifications() {
   useEffect(() => {
     fetchNotifications();
   }, []);
+<<<<<<< HEAD
+
+  useEffect(() => {
+    if (showDropdown) {
+      fetchNotifications();
+    }
+  }, [showDropdown]);
+=======
+>>>>>>> 95f0563 (Disable staff auto-refresh and notification polling)
 
   const fetchNotifications = async () => {
     try {
@@ -113,14 +122,24 @@ export default function Notifications() {
         <div className="notification-dropdown">
           <div className="notification-header">
             <h5>Notifications</h5>
-            {unreadCount > 0 && (
-              <button 
-                className="btn btn-sm btn-link"
-                onClick={markAllAsRead}
+            <div className="notification-header-actions">
+              {unreadCount > 0 && (
+                <button
+                  className="btn btn-sm btn-link"
+                  onClick={markAllAsRead}
+                >
+                  Mark all as read
+                </button>
+              )}
+              <button
+                className="notification-close"
+                onClick={() => setShowDropdown(false)}
+                aria-label="Close notifications"
+                type="button"
               >
-                Mark all as read
+                <FaTimes />
               </button>
-            )}
+            </div>
           </div>
 
           <div className="notification-list">

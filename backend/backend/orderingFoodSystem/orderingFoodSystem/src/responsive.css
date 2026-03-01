@@ -1,0 +1,815 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN STYLES
+   For QuickBite Food Ordering System
+   ========================================================================== */
+
+/* ==========================================================================
+   1. BASE RESPONSIVE UTILITIES
+   ========================================================================== */
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 575.98px) {
+  /* Extra small devices (portrait phones, less than 576px) */
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Small devices (landscape phones, 576px and up) */
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Medium devices (tablets, 768px and up) */
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Large devices (desktops, 992px and up) */
+}
+
+@media (min-width: 1200px) {
+  /* Extra large devices (large desktops, 1200px and up) */
+}
+
+/* ==========================================================================
+   2. RESPONSIVE TYPOGRAPHY
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1, .h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2, .h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3, .h3 {
+    font-size: 1.25rem;
+  }
+  
+  h4, .h4 {
+    font-size: 1.1rem;
+  }
+  
+  h5, .h5 {
+    font-size: 1rem;
+  }
+  
+  h6, .h6 {
+    font-size: 0.9rem;
+  }
+  
+  p {
+    font-size: 0.9rem;
+  }
+  
+  .lead {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .display-1 {
+    font-size: 2.5rem;
+  }
+  
+  .display-2 {
+    font-size: 2rem;
+  }
+  
+  .display-3 {
+    font-size: 1.75rem;
+  }
+  
+  .display-4 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   3. RESPONSIVE SPACING
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .m-1 { margin: 0.25rem !important; }
+  .m-2 { margin: 0.5rem !important; }
+  .m-3 { margin: 1rem !important; }
+  .m-4 { margin: 1.5rem !important; }
+  .m-5 { margin: 1rem !important; } /* Reduced from 3rem */
+  
+  .mt-1, .my-1 { margin-top: 0.25rem !important; }
+  .mt-2, .my-2 { margin-top: 0.5rem !important; }
+  .mt-3, .my-3 { margin-top: 1rem !important; }
+  .mt-4, .my-4 { margin-top: 1.5rem !important; }
+  .mt-5, .my-5 { margin-top: 1rem !important; } /* Reduced */
+  
+  .mb-1, .my-1 { margin-bottom: 0.25rem !important; }
+  .mb-2, .my-2 { margin-bottom: 0.5rem !important; }
+  .mb-3, .my-3 { margin-bottom: 1rem !important; }
+  .mb-4, .my-4 { margin-bottom: 1.5rem !important; }
+  .mb-5, .my-5 { margin-bottom: 1rem !important; } /* Reduced */
+  
+  .p-1 { padding: 0.25rem !important; }
+  .p-2 { padding: 0.5rem !important; }
+  .p-3 { padding: 1rem !important; }
+  .p-4 { padding: 1.5rem !important; }
+  .p-5 { padding: 1rem !important; } /* Reduced */
+  
+  .pt-1, .py-1 { padding-top: 0.25rem !important; }
+  .pt-2, .py-2 { padding-top: 0.5rem !important; }
+  .pt-3, .py-3 { padding-top: 1rem !important; }
+  .pt-4, .py-4 { padding-top: 1.5rem !important; }
+  .pt-5, .py-5 { padding-top: 1rem !important; } /* Reduced */
+  
+  .pb-1, .py-1 { padding-bottom: 0.25rem !important; }
+  .pb-2, .py-2 { padding-bottom: 0.5rem !important; }
+  .pb-3, .py-3 { padding-bottom: 1rem !important; }
+  .pb-4, .py-4 { padding-bottom: 1.5rem !important; }
+  .pb-5, .py-5 { padding-bottom: 1rem !important; } /* Reduced */
+}
+
+/* ==========================================================================
+   4. RESPONSIVE GRID SYSTEM
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  /* Make all columns full width on mobile */
+  .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+  .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  /* Override row columns for mobile */
+  .row-cols-1 > * {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .row-cols-sm-2 > * {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* 2 columns on tablets */
+  .row-cols-md-2 > * {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .row-cols-md-3 > * {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+  
+  .row-cols-md-4 > * {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* ==========================================================================
+   5. RESPONSIVE CARDS
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================================================
+   6. RESPONSIVE TABLES
+   ========================================================================== */
+
+.table-responsive-custom {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767.98px) {
+  .table-responsive-custom {
+    margin: -1rem;
+    padding: 0 1rem;
+  }
+  
+  .table {
+    font-size: 0.85rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.5rem;
+    white-space: nowrap;
+  }
+  
+  .table td {
+    min-width: 120px;
+  }
+  
+  .table td:first-child {
+    min-width: 80px;
+  }
+  
+  .table .badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .table .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   7. RESPONSIVE BUTTONS
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-lg {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn-block {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* ==========================================================================
+   8. RESPONSIVE FORMS
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .form-control {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .form-select {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .input-group .form-control,
+  .input-group .form-select {
+    margin-bottom: 0.5rem;
+  }
+  
+  .input-group-text {
+    display: none;
+  }
+}
+
+@media (min-width: 576px) {
+  .input-group-mobile-expand {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ==========================================================================
+   9. RESPONSIVE NAVIGATION
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 1rem;
+    z-index: 999;
+    overflow-y: auto;
+  }
+  
+  .navbar-nav {
+    flex-direction: column;
+  }
+  
+  .nav-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  
+  .logo-icon {
+    font-size: 1.4rem;
+  }
+  
+  .logo-text {
+    font-size: 1.2rem;
+  }
+}
+
+/* ==========================================================================
+   10. RESPONSIVE SIDEBAR (For Admin & Staff Layouts)
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+  /* Sidebar becomes a slide-out drawer on mobile */
+  aside.position-fixed {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    width: 280px !important;
+  }
+  
+  aside.position-fixed.sidebar-open {
+    transform: translateX(0);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  aside.position-fixed.sidebar-closed {
+    transform: translateX(-100%);
+  }
+  
+  /* Overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Main content takes full width on mobile */
+  .main-content {
+    margin-left: 0 !important;
+    padding: 15px !important;
+    width: 100%;
+  }
+  
+  /* Hamburger menu button */
+  .sidebar-toggle-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #343a40;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar-toggle-btn {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   11. RESPONSIVE HERO SECTIONS
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .hero {
+    min-height: 60vh !important;
+    padding-top: 60px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  
+  .hero h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  .hero p {
+    font-size: 0.9rem !important;
+  }
+  
+  .menu-hero {
+    min-height: 40vh !important;
+    padding-top: 60px !important;
+  }
+  
+  .menu-hero h1 {
+    font-size: 1.75rem !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .hero {
+    min-height: 70vh !important;
+    padding-top: 80px !important;
+  }
+  
+  .menu-hero {
+    min-height: 45vh !important;
+    padding-top: 80px !important;
+  }
+}
+
+/* ==========================================================================
+   12. RESPONSIVE MENU CARDS
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .menu-card {
+    margin-bottom: 1rem;
+  }
+  
+  .menu-card img {
+    height: 180px !important;
+  }
+  
+  .menu-body {
+    padding: 12px !important;
+  }
+  
+  .menu-body h5 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  
+  .menu-body p {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+  
+  .menu-footer {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .price {
+    font-size: 1.1rem !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .menu-card img {
+    height: 200px !important;
+  }
+}
+
+/* ==========================================================================
+   13. RESPONSIVE STAT CARDS (DASHBOARDS)
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .stat-card {
+    padding: 1rem !important;
+    margin-bottom: 0.75rem;
+  }
+  
+  .stat-card h4 {
+    font-size: 1.5rem !important;
+  }
+  
+  .stat-card p {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+  
+  .stat-card svg,
+  .stat-card i {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .stat-card {
+    padding: 1.25rem !important;
+  }
+}
+
+/* ==========================================================================
+   14. RESPONSIVE UTILITIES
+   ========================================================================== */
+
+/* Hide elements on mobile */
+@media (max-width: 575.98px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide elements on tablet */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .hide-on-tablet {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+@media (min-width: 576px) {
+  .show-on-mobile-only {
+    display: none !important;
+  }
+}
+
+/* Text alignment */
+@media (max-width: 575.98px) {
+  .text-xs-center {
+    text-align: center !important;
+  }
+  
+  .text-xs-left {
+    text-align: left !important;
+  }
+  
+  .text-xs-right {
+    text-align: right !important;
+  }
+}
+
+/* Flex direction */
+@media (max-width: 575.98px) {
+  .flex-xs-column {
+    flex-direction: column !important;
+  }
+}
+
+/* ==========================================================================
+   15. ANIMATION UTILITIES
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .fade-in-up {
+    animation: fadeUpMobile 0.8s forwards;
+  }
+  
+  @keyframes fadeUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ==========================================================================
+   16. LOADER/SPINNER ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .spinner-border {
+    width: 2rem;
+    height: 2rem;
+    border-width: 0.2em;
+  }
+}
+
+/* ==========================================================================
+   17. BADGE ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.3em 0.6em;
+  }
+}
+
+/* ==========================================================================
+   18. FOOTER RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .footer-section {
+    padding: 30px 0 15px !important;
+  }
+  
+  .footer-bottom {
+    padding: 15px 0;
+    font-size: 0.85rem;
+  }
+  
+  .footer-links {
+    text-align: center;
+  }
+  
+  .footer-section p {
+    justify-content: center;
+  }
+  
+  .footer-social {
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   19. IMAGE RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ==========================================================================
+   20. SECTIONS PADDING
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  section {
+    padding: 2rem 0 !important;
+  }
+  
+  section.py-5 {
+    padding: 2rem 0 !important;
+  }
+}
+
+/* ==========================================================================
+   21. LOGIN/REGISTER PAGE RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .login-card,
+  .card[style*="maxWidth: 450px"] {
+    max-width: 95% !important;
+    padding: 1.5rem !important;
+    margin: 0 10px;
+  }
+  
+  .login-card h2,
+  .card[style*="maxWidth: 450px"] h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .login-card p,
+  .card[style*="maxWidth: 450px"] p {
+    font-size: 0.9rem !important;
+  }
+  
+  .login-card .form-label,
+  .card[style*="maxWidth: 450px"] .form-label {
+    font-size: 0.9rem;
+  }
+  
+  .login-card .form-control,
+  .card[style*="maxWidth: 450px"] .form-control {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .login-card .input-group-text,
+  .card[style*="maxWidth: 450px"] .input-group-text {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .login-card .btn,
+  .card[style*="maxWidth: 450px"] .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .login-card .input-group svg,
+  .card[style*="maxWidth: 450px"] .input-group svg {
+    top: 32px !important;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .login-card,
+  .card[style*="maxWidth: 450px"] {
+    max-width: 80% !important;
+    padding: 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   22. HERO SECTION FOR AUTH PAGES
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .hero[style*="minHeight: 100vh"] {
+    padding: 1rem !important;
+    align-items: flex-start !important;
+    padding-top: 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   23. CUSTOMER PROFILE PAGE
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-header .avatar {
+    margin: 0 auto 1rem;
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   24. CART PAGE
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+  .cart-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .cart-item .item-image {
+    margin: 0 auto;
+  }
+  
+  .cart-item .item-details {
+    text-align: center;
+  }
+  
+  .cart-item .quantity-control {
+    justify-content: center;
+  }
+  
+  .cart-summary {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  }
+}
+

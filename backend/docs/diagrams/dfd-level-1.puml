@@ -1,0 +1,43 @@
+@startuml
+skinparam handwritten true
+left to right direction
+
+actor Customer
+actor "Restaurant Staff" as Staff
+database "D1 Users/Profile" as D1
+database "D2 Food Catalog" as D2
+database "D3 Orders/OrderItems" as D3
+database "D4 Inventory" as D4
+database "D5 Notifications" as D5
+
+rectangle "P1 Auth & Profile" as P1
+rectangle "P2 Food Catalog Management" as P2
+rectangle "P3 Order Processing" as P3
+rectangle "P4 Inventory Management" as P4
+rectangle "P5 Notification Service" as P5
+
+Customer --> P1 : Register/Login/Profile Update
+P1 --> Customer : Tokens/Profile Data
+P1 <--> D1 : Create/Read/Update User Profile
+
+Customer --> P2 : Request available foods
+Staff --> P2 : Create/Update food items
+P2 --> Customer : Food list
+P2 <--> D2 : Read/Write food data
+
+Customer --> P3 : Create order
+Staff --> P3 : Approve/Reject/View orders
+P3 --> Customer : Order details/status
+P3 --> Staff : Order queue
+P3 <--> D3 : Read/Write orders + items
+P3 --> P5 : Emit order event
+
+Staff --> P4 : Create/Update inventory
+P4 --> Staff : Inventory records
+P4 <--> D4 : Read/Write inventory
+
+P5 <--> D5 : Store/read notifications
+P5 --> Customer : Notification updates
+P5 --> Staff : Notification updates
+
+@enduml
