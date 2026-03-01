@@ -440,12 +440,18 @@ class NotificationViewSet(ModelViewSet):
     
     def get_queryset(self):
         """Return only notifications for the current user"""
-        return Notification.objects.filter(user=self.request.user)
+        user = self.request.user
+        if not user or not user.is_authenticated:
+            return Notification.objects.none()
+        return Notification.objects.filter(user=user)
     
     @action(detail=False, methods=['get'])
     def unread_count(self, request):
         """Get count of unread notifications"""
-        count = Notification.objects.filter(user=request.user, is_read=False).count()
+        user = request.user
+        if not user or not user.is_authenticated:
+            return Response({'unread_count': 0})
+        count = Notification.objects.filter(user=user, is_read=False).count()
         return Response({'unread_count': count})
     
     @action(detail=True, methods=['post'])
@@ -459,7 +465,10 @@ class NotificationViewSet(ModelViewSet):
     @action(detail=False, methods=['post'])
     def mark_all_as_read(self, request):
         """Mark all user notifications as read"""
-        count = Notification.objects.filter(user=request.user, is_read=False).update(is_read=True)
+        user = request.user
+        if not user or not user.is_authenticated:
+            return Response({'marked_as_read': 0})
+        count = Notification.objects.filter(user=user, is_read=False).update(is_read=True)
         return Response({'marked_as_read': count})
 
 
