@@ -31,6 +31,12 @@ Optional: create/update restaurant staff user on deploy:
 - `STAFF_FIRST_NAME=Restaurant`
 - `STAFF_LAST_NAME=Admin`
 
+Recommended separation:
+
+- Django `/admin` login: use the superuser account (`DJANGO_SUPERUSER_*`).
+- App staff login (`/login` with role `restaurant`): use `STAFF_*`.
+- `STAFF_*` account is intentionally not superuser.
+
 Current project defaults if you don't set `STAFF_*` env vars:
 
 - `STAFF_USERNAME=staff1`

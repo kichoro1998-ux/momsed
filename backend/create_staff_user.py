@@ -46,7 +46,9 @@ def create_or_update_staff():
     if user.email.lower() != email:
         user.email = email
     user.set_password(password)
+    # Staff account is for app operations, not full Django admin ownership.
     user.is_staff = True
+    user.is_superuser = False
     user.save()
 
     profile, _ = Profile.objects.get_or_create(user=user, defaults={"role": "restaurant"})
