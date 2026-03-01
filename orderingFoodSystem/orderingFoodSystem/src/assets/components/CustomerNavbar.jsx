@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaUtensils, FaHome, FaShoppingCart, FaHistory, FaUser, FaBars, FaSignOutAlt } from "react-icons/fa";
 import Notifications from "../../components/Notifications";
@@ -6,6 +7,7 @@ import { useAuth } from "../../contexts/AuthContext";
 export default function CustomerNavbar() {
   const location = useLocation();
   const { logout } = useAuth();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
@@ -27,18 +29,18 @@ export default function CustomerNavbar() {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#customerNavMenu"
+          onClick={() => setMobileOpen((prev) => !prev)}
         >
           <FaBars style={{ color: "#fff" }} />
         </button>
 
-        <div className="collapse navbar-collapse" id="customerNavMenu">
+        <div className={`navbar-collapse ${mobileOpen ? "d-block" : "d-none d-lg-flex"} justify-content-end`} id="customerNavMenu">
           <ul className="navbar-nav ms-auto gap-lg-3">
             <li className="nav-item">
               <Link
                 className={`nav-link custom-link ${location.pathname === "/customer/dashboard" ? "active" : ""}`}
                 to="/customer/dashboard"
+                onClick={() => setMobileOpen(false)}
               >
                 Dashboard
               </Link>
@@ -47,6 +49,7 @@ export default function CustomerNavbar() {
               <Link
                 className={`nav-link custom-link ${location.pathname === "/customer/menu" ? "active" : ""}`}
                 to="/customer/menu"
+                onClick={() => setMobileOpen(false)}
               >
                 Order Food
               </Link>
@@ -55,6 +58,7 @@ export default function CustomerNavbar() {
               <Link
                 className={`nav-link custom-link ${location.pathname === "/customer/orders" ? "active" : ""}`}
                 to="/customer/orders"
+                onClick={() => setMobileOpen(false)}
               >
                 My Orders
               </Link>
@@ -63,6 +67,7 @@ export default function CustomerNavbar() {
               <Link
                 className={`nav-link custom-link ${location.pathname === "/customer/profile" ? "active" : ""}`}
                 to="/customer/profile"
+                onClick={() => setMobileOpen(false)}
               >
                 Profile
               </Link>

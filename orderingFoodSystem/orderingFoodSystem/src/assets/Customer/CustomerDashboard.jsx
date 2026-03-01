@@ -298,7 +298,7 @@ export default function CustomerDashboard() {
                             src={getFoodImageUrl(food.image)} 
                             alt={food.name}
                             style={{ height: "120px", objectFit: "cover", borderRadius: "15px 15px 0 0" }}
-                            onError={(e) => { e.target.src = "/foodpic.jpg"; }}
+                            onError={(e) => { e.currentTarget.src = "/vite.svg"; }}
                           />
                           <div className="card-body p-2 text-center">
                             <h6 className="card-title mb-1" style={{ fontSize: "0.9rem" }}>{food.name}</h6>

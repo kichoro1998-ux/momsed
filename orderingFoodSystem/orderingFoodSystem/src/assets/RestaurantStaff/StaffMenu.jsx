@@ -325,7 +325,7 @@ export default function StaffMenu() {
                                                     src={getFoodImageUrl(item.image)}
                                                     alt={item.name}
                                                     style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }}
-                                                    onError={(e) => { e.currentTarget.src = '/foodpic.jpg'; }}
+                                                    onError={(e) => { e.currentTarget.src = '/vite.svg'; }}
                                                 />
                                             ) : (
                                                 <div style={{ width: '50px', height: '50px', backgroundColor: '#f0f0f0', borderRadius: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

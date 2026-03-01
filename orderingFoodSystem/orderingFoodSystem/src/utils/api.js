@@ -54,6 +54,10 @@ export const getFoodImageUrl = (imagePath) => {
     
     // If already a full URL, return as-is
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        // Render should be accessed through HTTPS from Vercel.
+        if (imagePath.startsWith('http://') && imagePath.includes('.onrender.com')) {
+            return imagePath.replace('http://', 'https://');
+        }
         return imagePath;
     }
     

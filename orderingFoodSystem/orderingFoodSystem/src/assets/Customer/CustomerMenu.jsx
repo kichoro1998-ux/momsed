@@ -6,6 +6,7 @@ import { useCart } from "../../contexts/CartContext";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function CustomerMenu() {
+  const FALLBACK_IMAGE = "/vite.svg";
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -186,7 +187,7 @@ export default function CustomerMenu() {
                         src={getFoodImageUrl(item.image)} 
                         alt={item.name}
                         style={{ height: "150px", objectFit: "contain", borderRadius: "15px 15px 0 0", backgroundColor: "#f8f9fa" }}
-                        onError={(e) => { e.target.src = "/foodpic.jpg"; }}
+                        onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
                       />
                       <div className="card-body text-center">
                         <h5 className="card-title">{item.name}</h5>
@@ -247,7 +248,7 @@ export default function CustomerMenu() {
                           src={getFoodImageUrl(item.image)} 
                           alt={item.name}
                           style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "8px" }}
-                          onError={(e) => { e.target.src = "/foodpic.jpg"; }}
+                          onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
                         />
                       </div>
                       <div className="flex-grow-1">
