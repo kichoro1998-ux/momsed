@@ -33,9 +33,8 @@ def env_bool(name, default=False):
     return value.strip().lower() in ("1", "true", "yes", "on")
 
 
-DEBUG = env_bool("DEBUG", False)
-if os.environ.get("RENDER"):
-    DEBUG = False
+DEBUG = env_bool("DEBUG", True)
+# Don't auto-set DEBUG=False on Render - let the env var control it
 
 def env_list(name, default=None):
     value = os.environ.get(name, "")
@@ -175,7 +174,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = []
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

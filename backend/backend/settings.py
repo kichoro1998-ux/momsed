@@ -33,9 +33,8 @@ def env_bool(name, default=False):
     return value.strip().lower() in ("1", "true", "yes", "on")
 
 
-DEBUG = env_bool("DEBUG", False)
-if os.environ.get("RENDER"):
-    DEBUG = False
+DEBUG = env_bool("DEBUG", True)
+# Don't auto-set DEBUG=False on Render - let the env var control it
 
 def env_list(name, default=None):
     value = os.environ.get(name, "")

@@ -6,10 +6,12 @@ Use these settings in your Render Web Service:
 - Build Command: `./build.sh`
 - Start Command: `gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT --log-file -`
 
+**IMPORTANT: Set DEBUG=True in your Render environment variables to see detailed error messages!**
+
 Required environment variables:
 
 - `DJANGO_SECRET_KEY=<strong-secret>`
-- `DEBUG=False`
+- `DEBUG=True` (IMPORTANT!)
 - `ALLOWED_HOSTS=momsed-1-vkv7.onrender.com`
 - `DATABASE_URL=<render-postgres-url>`
 - `CORS_ALLOWED_ORIGINS=https://momsed-mz.vercel.app`
