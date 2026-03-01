@@ -21,6 +21,7 @@ from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
+from django.http import JsonResponse
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -37,7 +38,25 @@ schema_view = get_schema_view(
     permission_classes=[permissions.AllowAny],
 )
 
+
+def root_info(request):
+    return JsonResponse(
+        {
+            "message": "QuickBite backend is running.",
+            "endpoints": {
+                "admin": "/admin/",
+                "swagger": "/swagger/",
+                "redoc": "/redoc/",
+                "api_base": "/api/",
+            },
+        }
+    )
+
+
 urlpatterns = [
+    # Root info page
+    path('', root_info),
+
     # Admin panel
     path('admin/', admin.site.urls),
 

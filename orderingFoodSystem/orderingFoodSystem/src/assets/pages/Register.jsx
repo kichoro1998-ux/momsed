@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaPhone, FaMapMarkerAlt, FaEye, FaEyeSlash, } from "react-icons/fa";
 import { authAPI } from "../../utils/api";
 
@@ -16,16 +16,17 @@ export default function Register() {
   // All public registrations are automatically customers
   const role = "customer";
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const navigate = useNavigate();
 
   // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setError("");
+    setSuccess("");
   };
 
   // Generate username from first_name and last_name
@@ -72,6 +73,7 @@ export default function Register() {
 
     setLoading(true);
     setError("");
+    setSuccess("");
 
     try {
       await authAPI.register(
@@ -84,8 +86,16 @@ export default function Register() {
         phone,
         address
       );
-      alert("Registration successful! Please login.");
-      navigate('/login');
+      setSuccess("Registration successful. You can login now when you are ready.");
+      setFormData({
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        phone: "",
+        address: "",
+      });
     } catch (err) {
       console.error("Registration failed:", err);
       if (!err.response) {
@@ -148,6 +158,14 @@ export default function Register() {
             {error && (
               <div className="alert alert-danger py-2 mb-3">
                 {error}
+              </div>
+            )}
+            {success && (
+              <div className="alert alert-success py-2 mb-3">
+                {success}{" "}
+                <Link to="/login" className="fw-bold text-success text-decoration-underline">
+                  Login
+                </Link>
               </div>
             )}
 

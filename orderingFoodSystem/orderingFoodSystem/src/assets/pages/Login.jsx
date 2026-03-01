@@ -281,14 +281,26 @@ export default function Login() {
                                 }}
                             />
                             <input
-                                type="password"
-                                className="form-control ps-5"
+                                type={showPassword ? "text" : "password"}
+                                className="form-control ps-5 pe-5"
                                 id="password"
                                 name="password"
                                 placeholder="Enter your password"
                                 value={formData.password}
                                 onChange={handleChange}
                             />
+                            <span
+                                style={{
+                                    position: "absolute",
+                                    top: "38px",
+                                    right: "10px",
+                                    cursor: "pointer",
+                                    color: "#e53935",
+                                }}
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <FaEye /> : <FaEyeSlash />}
+                            </span>
                         </div>
 
                         {!isLogin && (
