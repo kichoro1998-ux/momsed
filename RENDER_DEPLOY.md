@@ -6,7 +6,7 @@ Use these settings in your Render Web Service:
 - Build Command: `./build.sh`
 - Start Command: `gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT --log-file -`
 
-**IMPORTANT: Set DEBUG=True in your Render environment variables to see detailed error messages!**
+**IMPORTANT: Make sure your Render service is using Python 3.11 or 3.12! Python 3.14 is NOT compatible with Django.**
 
 Required environment variables:
 
