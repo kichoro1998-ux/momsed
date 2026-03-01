@@ -12,15 +12,6 @@ export default function Notifications() {
   useEffect(() => {
     fetchNotifications();
   }, []);
-<<<<<<< HEAD
-
-  useEffect(() => {
-    if (showDropdown) {
-      fetchNotifications();
-    }
-  }, [showDropdown]);
-=======
->>>>>>> 95f0563 (Disable staff auto-refresh and notification polling)
 
   const fetchNotifications = async () => {
     try {
