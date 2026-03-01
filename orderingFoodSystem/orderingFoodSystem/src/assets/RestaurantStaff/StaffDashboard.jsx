@@ -71,17 +71,9 @@ export default function StaffDashboard() {
     }
   };
 
-  // Initial load and auto-refresh every 10 seconds
+  // Initial load only. Refresh is controlled by the button.
   useEffect(() => {
     fetchDashboardStats();
-    
-    // Auto-refresh every 10 seconds
-    const interval = setInterval(() => {
-      setRefreshing(true);
-      fetchDashboardStats();
-    }, 10000);
-    
-    return () => clearInterval(interval);
   }, []);
 
   // Manual refresh
