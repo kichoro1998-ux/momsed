@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaHistory, FaStar, FaClock, FaBell, FaUtensils, FaPlus, FaMinus, FaSearch } from "react-icons/fa";
+import { FaShoppingCart, FaHistory, FaStar, FaClock, FaBell, FaUtensils, FaPlus, FaMinus, FaSearch, FaCamera } from "react-icons/fa";
 import { orderAPI, foodAPI, getFoodImageUrl } from "../../utils/api";
 import { useAuth } from "../../contexts/AuthContext";
 import { useCart } from "../../contexts/CartContext";
@@ -20,6 +20,7 @@ export default function CustomerDashboard() {
   const [loading, setLoading] = useState(true);
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [placingOrder, setPlacingOrder] = useState(false);
+  const [imageLoadErrors, setImageLoadErrors] = useState({});
   
   const { user, isAuthenticated } = useAuth();
   const { cart, addToCart, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
@@ -294,12 +295,18 @@ export default function CustomerDashboard() {
                     return (
                       <div key={food.id} className="col-6 col-md-4">
                         <div className="card h-100 border-0 shadow-sm" style={{ borderRadius: "15px" }}>
-                          <img 
-                            src={getFoodImageUrl(food.image)} 
-                            alt={food.name}
-                            style={{ height: "120px", objectFit: "cover", borderRadius: "15px 15px 0 0" }}
-                            onError={(e) => { e.currentTarget.src = "/vite.svg"; }}
-                          />
+                          {food.image && !imageLoadErrors[food.id] ? (
+                            <img
+                              src={getFoodImageUrl(food.image)}
+                              alt={food.name}
+                              style={{ height: "120px", width: "100%", objectFit: "cover", borderRadius: "15px 15px 0 0" }}
+                              onError={() => setImageLoadErrors((prev) => ({ ...prev, [food.id]: true }))}
+                            />
+                          ) : (
+                            <div style={{ height: "120px", borderRadius: "15px 15px 0 0", backgroundColor: "#f8f9fa", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <FaCamera className="text-muted" />
+                            </div>
+                          )}
                           <div className="card-body p-2 text-center">
                             <h6 className="card-title mb-1" style={{ fontSize: "0.9rem" }}>{food.name}</h6>
                             <p className="card-text text-muted mb-1" style={{ fontSize: "0.75rem" }}>
@@ -464,4 +471,3 @@ export default function CustomerDashboard() {
     </>
   );
 }
-

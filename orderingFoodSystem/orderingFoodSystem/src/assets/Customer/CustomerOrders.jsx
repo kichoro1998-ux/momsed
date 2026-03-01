@@ -29,17 +29,9 @@ export default function CustomerOrders() {
     }
   };
 
-  // Initial load and auto-refresh every 10 seconds
+  // Initial load only (manual refresh button handles updates)
   useEffect(() => {
     fetchOrders();
-    
-    // Auto-refresh every 10 seconds to check for order status updates
-    const interval = setInterval(() => {
-      setRefreshing(true);
-      fetchOrders();
-    }, 10000);
-    
-    return () => clearInterval(interval);
   }, []);
 
   // Manual refresh function

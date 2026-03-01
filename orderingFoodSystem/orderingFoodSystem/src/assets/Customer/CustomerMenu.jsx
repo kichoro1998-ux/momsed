@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaPlus, FaMinus, FaShoppingCart, FaSearch } from "react-icons/fa";
+import { FaPlus, FaMinus, FaShoppingCart, FaSearch, FaCamera } from "react-icons/fa";
 import { foodAPI, orderAPI, getFoodImageUrl } from "../../utils/api";
 import { useCart } from "../../contexts/CartContext";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function CustomerMenu() {
-  const FALLBACK_IMAGE = "/vite.svg";
   const [foods, setFoods] = useState([]);
+  const [imageLoadErrors, setImageLoadErrors] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -183,12 +183,18 @@ export default function CustomerMenu() {
                 return (
                   <div key={item.id} className="col-md-6">
                     <div className="card h-100 shadow-sm" style={{ borderRadius: "15px", border: "none", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
-                      <img 
-                        src={getFoodImageUrl(item.image)} 
-                        alt={item.name}
-                        style={{ height: "150px", objectFit: "contain", borderRadius: "15px 15px 0 0", backgroundColor: "#f8f9fa" }}
-                        onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
-                      />
+                      {item.image && !imageLoadErrors[item.id] ? (
+                        <img
+                          src={getFoodImageUrl(item.image)}
+                          alt={item.name}
+                          style={{ height: "150px", width: "100%", objectFit: "contain", borderRadius: "15px 15px 0 0", backgroundColor: "#f8f9fa" }}
+                          onError={() => setImageLoadErrors((prev) => ({ ...prev, [item.id]: true }))}
+                        />
+                      ) : (
+                        <div style={{ height: "150px", borderRadius: "15px 15px 0 0", backgroundColor: "#f8f9fa", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <FaCamera className="text-muted" size={28} />
+                        </div>
+                      )}
                       <div className="card-body text-center">
                         <h5 className="card-title">{item.name}</h5>
                         <p className="card-text text-muted small">{item.description || 'Delicious food item'}</p>
@@ -244,12 +250,18 @@ export default function CustomerMenu() {
                   {cart.map((item) => (
                     <div key={item.id} className="d-flex align-items-center mb-3 pb-3 border-bottom">
                       <div className="me-3">
-                        <img 
-                          src={getFoodImageUrl(item.image)} 
-                          alt={item.name}
-                          style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "8px" }}
-                          onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
-                        />
+                        {item.image && !imageLoadErrors[item.id] ? (
+                          <img
+                            src={getFoodImageUrl(item.image)}
+                            alt={item.name}
+                            style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "8px" }}
+                            onError={() => setImageLoadErrors((prev) => ({ ...prev, [item.id]: true }))}
+                          />
+                        ) : (
+                          <div style={{ width: "60px", height: "60px", borderRadius: "8px", backgroundColor: "#f8f9fa", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <FaCamera className="text-muted" />
+                          </div>
+                        )}
                       </div>
                       <div className="flex-grow-1">
                         <h6 className="mb-1">{item.name}</h6>
