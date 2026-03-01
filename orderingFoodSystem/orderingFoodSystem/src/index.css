@@ -343,3 +343,49 @@ img:hover {
   border-radius: 5px;
   padding: 20px;
 }
+
+/* Customer mobile navbar: show full tab list clearly on hamburger click */
+@media (max-width: 991.98px) {
+  .custom-navbar {
+    position: fixed;
+    z-index: 1050;
+  }
+
+  .custom-navbar .customer-nav-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: auto !important;
+    background: rgba(15, 15, 15, 0.96) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    z-index: 1060;
+  }
+
+  .custom-navbar .customer-nav-menu .navbar-nav {
+    display: flex;
+    flex-direction: column !important;
+    gap: 8px;
+  }
+
+  .custom-navbar .customer-nav-menu .nav-link {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+
+  .custom-navbar .customer-nav-menu .nav-item {
+    margin-bottom: 0 !important;
+  }
+
+  .customer-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1040;
+  }
+}

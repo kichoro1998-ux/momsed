@@ -34,7 +34,7 @@ export default function CustomerNavbar() {
           <FaBars style={{ color: "#fff" }} />
         </button>
 
-        <div className={`navbar-collapse ${mobileOpen ? "d-block" : "d-none d-lg-flex"} justify-content-end`} id="customerNavMenu">
+        <div className={`navbar-collapse customer-nav-menu ${mobileOpen ? "d-block" : "d-none d-lg-flex"} justify-content-end`} id="customerNavMenu">
           <ul className="navbar-nav ms-auto gap-lg-3">
             <li className="nav-item">
               <Link
@@ -86,6 +86,12 @@ export default function CustomerNavbar() {
           </ul>
         </div>
       </div>
+      {mobileOpen && (
+        <div
+          className="customer-nav-backdrop d-lg-none"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
     </nav>
   );
 }

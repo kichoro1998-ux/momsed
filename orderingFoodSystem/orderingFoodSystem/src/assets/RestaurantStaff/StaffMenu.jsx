@@ -22,6 +22,7 @@ export default function StaffMenu() {
     const [uploadingFoodId, setUploadingFoodId] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [imageLoadErrors, setImageLoadErrors] = useState({});
 
     // Fetch foods from API
     useEffect(() => {
@@ -81,6 +82,11 @@ export default function StaffMenu() {
             setMenuItems(menuItems.map(item => 
                 item.id === foodId ? response.data.food : item
             ));
+            setImageLoadErrors((prev) => {
+                const next = { ...prev };
+                delete next[foodId];
+                return next;
+            });
             
             setSelectedFile(null);
             setImagePreview(null);
@@ -320,12 +326,12 @@ export default function StaffMenu() {
                                 {menuItems.map(item => (
                                     <tr key={item.id}>
                                         <td>
-                                            {item.image ? (
+                                            {item.image && !imageLoadErrors[item.id] ? (
                                                 <img 
                                                     src={getFoodImageUrl(item.image)}
                                                     alt={item.name}
                                                     style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '5px' }}
-                                                    onError={(e) => { e.currentTarget.src = '/vite.svg'; }}
+                                                    onError={() => setImageLoadErrors((prev) => ({ ...prev, [item.id]: true }))}
                                                 />
                                             ) : (
                                                 <div style={{ width: '50px', height: '50px', backgroundColor: '#f0f0f0', borderRadius: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
