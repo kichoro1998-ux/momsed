@@ -99,6 +99,9 @@ class FoodViewSet(ModelViewSet):
     permission_classes = [AllowAny]  # Allow anyone to view foods
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Food.objects.none()
+
         user = self.request.user
         
         # If user is authenticated and is restaurant staff, show only their foods
@@ -181,7 +184,12 @@ class OrderViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Order.objects.none()
+
         user = self.request.user
+        if not user or not user.is_authenticated:
+            return Order.objects.none()
         
         # Handle users without profile - default to customer role
         try:
@@ -389,7 +397,12 @@ class InventoryViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Inventory.objects.none()
+
         user = self.request.user
+        if not user or not user.is_authenticated:
+            return Inventory.objects.none()
         
         # Return empty queryset if user has no profile yet
         try:
@@ -440,6 +453,9 @@ class NotificationViewSet(ModelViewSet):
     
     def get_queryset(self):
         """Return only notifications for the current user"""
+        if getattr(self, 'swagger_fake_view', False):
+            return Notification.objects.none()
+
         user = self.request.user
         if not user or not user.is_authenticated:
             return Notification.objects.none()
