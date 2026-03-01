@@ -16,6 +16,12 @@ export default function Notifications() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (showDropdown) {
+      fetchNotifications();
+    }
+  }, [showDropdown]);
+
   const fetchNotifications = async () => {
     try {
       setLoading(true);

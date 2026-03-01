@@ -106,7 +106,7 @@ export default function CustomerProfile() {
               <h5 className="mb-0" style={{ color: "#3a3433ff" }}>Personal Information</h5>
             </div>
             <div className="card-body">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="profile-form">
                 <div className="row g-3">
                   {/* Full Name (auto-generated from first + last name) */}
                   <div className="col-md-6">
@@ -120,7 +120,7 @@ export default function CustomerProfile() {
                         className="form-control"
                         value={profile.full_name || `${profile.first_name} ${profile.last_name}`.trim() || "N/A"}
                         disabled
-                        style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa" }}
+                        style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa", color: "#212529", opacity: 1, WebkitTextFillColor: "#212529" }}
                       />
                     </div>
                     <small className="text-muted">Full name is automatically generated from first and last name</small>
@@ -138,7 +138,7 @@ export default function CustomerProfile() {
                         className="form-control"
                         value={profile.username || ""}
                         disabled
-                        style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa" }}
+                        style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa", color: "#212529", opacity: 1, WebkitTextFillColor: "#212529" }}
                       />
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function CustomerProfile() {
                         className="form-control"
                         value={profile.email || ""}
                         disabled
-                        style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa" }}
+                        style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa", color: "#212529", opacity: 1, WebkitTextFillColor: "#212529" }}
                       />
                     </div>
                   </div>
@@ -275,4 +275,3 @@ export default function CustomerProfile() {
     </div>
   );
 }
-
